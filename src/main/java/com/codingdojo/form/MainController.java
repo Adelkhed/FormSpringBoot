@@ -13,12 +13,15 @@ import jakarta.servlet.http.HttpSession;
 public class MainController {
 
     // Rute for form
-    @GetMapping("/omikuji")
+    @GetMapping("/")
     public String omikujiForm() {
-        return "form.jsp"; 
+        return "redirect:/omikuji"; 
     }
 
-    
+    @GetMapping("/omikuji")
+    public String form() {
+        return "form.jsp"; 
+    }
     @PostMapping("/omikuji/process")
     public String processOmikuji(
             @RequestParam("number") int number,
@@ -36,7 +39,7 @@ public class MainController {
 	        session.setAttribute("livingThing", livingThing);
         session.setAttribute("message", message);
 
-        // Redirect to omikuji/show
+        
         return "redirect:/omikuji/show";
     }
 
